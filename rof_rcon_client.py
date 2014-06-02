@@ -52,6 +52,10 @@ def auto_reconnect(func):
     return wrapper
 
 
+class RConClientError(Exception):
+    pass
+
+
 class RConClient(object):
 
     def __init__(self, login, password, host='localhost', port=8991, auto_connect=True, auto_reconnect=True, logger=None):
@@ -129,11 +133,11 @@ class RConClient(object):
             self.logger.debug('rcon received an response from the server\n{}'.format(params))
         else:
             self.logger.error('rcon received an error from the server\n{} => {}'.format(command, params['STATUS']))
-            raise RuntimeError(params['STATUS'])
+            raise RConClientError(params['STATUS'])
         return params
 
     def auth(self):
-        return self.command('auth %s %s' % (self.login, self.password))
+        return self.command('auth {self.login} {self.password}'.format(**locals()))
 
     def get_my_status(self):
         return self.command('mystatus')
@@ -164,52 +168,52 @@ class RConClient(object):
         return self.command('shutdown')
 
     def open_sds(self, path):
-        return self.command('opensds %s' % path)
+        return self.command('opensds {path}'.format(**locals()))
 
     def close_sds(self):
         return self.command('closesds')
 
     def kick_by_name(self, name):
-        return self.command('kick name %s' % name)
+        return self.command('kick name {name}'.format(**locals()))
 
     def kick_by_cid(self, client_id):
-        return self.command('kick cid %s' % client_id)
+        return self.command('kick cid {client_id}'.format(**locals()))
 
     def kick_by_login(self, login):
-        return self.command('kick playerid %s' % login)
+        return self.command('kick playerid {login}'.format(**locals()))
 
     def kick_by_ids(self, ids):
-        return self.command('kick profileid %s' % ids)
+        return self.command('kick profileid {ids}'.format(**locals()))
 
     def ban_by_name(self, name, ban_account=False):
         if ban_account:
-            return self.command('banuser name %s' % name)
+            return self.command('banuser name {name}'.format(**locals()))
         else:
-            return self.command('ban name %s' % name)
+            return self.command('ban name {name}'.format(**locals()))
 
     def ban_by_cid(self, client_id, ban_account=False):
         if ban_account:
-            return self.command('banuser cid %s' % client_id)
+            return self.command('banuser cid {client_id}'.format(**locals()))
         else:
-            return self.command('ban cid %s' % client_id)
+            return self.command('ban cid {client_id}'.format(**locals()))
 
     def ban_by_login(self, login, ban_account=False):
         if ban_account:
-            return self.command('banuser playerid %s' % login)
+            return self.command('banuser playerid {login}'.format(**locals()))
         else:
-            return self.command('ban playerid %s' % login)
+            return self.command('ban playerid {login}'.format(**locals()))
 
     def ban_by_ids(self, ids, ban_account=False):
         if ban_account:
-            return self.command('banuser profileid %s' % ids)
+            return self.command('banuser profileid {ids}'.format(**locals()))
         else:
-            return self.command('ban profileid %s' % ids)
+            return self.command('ban profileid {ids}'.format(**locals()))
 
     def unban_all(self):
         return self.command('unbanall')
 
     def server_input(self, trigger):
-        return self.command('serverinput %s' % trigger)
+        return self.command('serverinput {trigger}'.format(**locals()))
 
     def send_stat_now(self):
         return self.command('sendstatnow')
@@ -218,13 +222,13 @@ class RConClient(object):
         return self.command('cutchatlog')
 
     def send_chat_msg_to_all(self, msg):
-        return self.command('chatmsg 0 -1 %s' % msg)
+        return self.command('chatmsg 0 -1 {msg}'.format(**locals()))
 
     def send_chat_msg_to_coal(self, msg, coalition):
-        return self.command('chatmsg 1 %s %s' % (coalition, msg))
+        return self.command('chatmsg 1 {coalition} {msg}'.format(**locals()))
 
     def send_chat_msg_to_country(self, msg, country):
-        return self.command('chatmsg 2 %s %s' % (country, msg))
+        return self.command('chatmsg 2 {country} {msg}'.format(**locals()))
 
     def send_chat_msg_to_client(self, msg, client):
-        return self.command('chatmsg 3 %s %s' % (client, msg))
+        return self.command('chatmsg 3 {client} {msg}'.format(**locals()))
