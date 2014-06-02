@@ -1,14 +1,14 @@
 RCon client for ROF dserver
-===============
+===========================
 
 Usage
 -----
 
-    $ pip install rof-rcon-client
+    pip install rof-rcon-client
 
 Example
 
-login, password, host, port from startup.cfg: account|login, account|password, system|rcon_ip, system|rcon_port
+[account]login, [account]password, [system]rcon_ip, [system]rcon_port from startup.cfg
 
     import logging
     from rof_rcon_client import RConClient
