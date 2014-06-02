@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='rof-rcon-client',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/vaal-/rof-rcon-client',
     license='BSD',
     author='Vladimir Ulupov',
@@ -24,7 +24,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
-        'Topic :: Games/Entertainment',
+        'Topic :: Games/Entertainment :: Simulation',
         'Topic :: Software Development :: Libraries',
     ],
     keywords='rise of flight, rof, rcon, dserver'
