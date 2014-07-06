@@ -57,3 +57,5 @@ docs/_build/
 
 # Windows
 *.bat
+
+_backup/

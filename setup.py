@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='rof-rcon-client',
-    version='0.1.1',
+    version='0.2.0',
     url='https://github.com/vaal-/rof-rcon-client',
     license='BSD',
     author='Vladimir Ulupov',
@@ -12,7 +12,7 @@ setup(
     # long_description=__doc__,
     py_modules=['rof_rcon_client'],
     install_requires=[
-        'six==1.6.1',
+        'six==1.8.0',
     ],
     zip_safe=False,
     include_package_data=True,
